@@ -1,0 +1,13 @@
+Building_Dataset/
+.venv/
+outputs/
+checkpoints/
+credentials/
+*.pem
+*.key
+__pycache__/
+.pytest_cache/
+*.egg-info/
+*.pt
+*.pth
+*.tar.gz

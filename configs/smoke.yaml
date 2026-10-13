@@ -1,0 +1,44 @@
+data_root: outputs/synthetic/data
+output_root: outputs/synthetic/run
+seed: 42
+inventory:
+  city: synthetic
+  rgb_bands: [1, 2, 3]
+  annotation_crs: EPSG:4326
+  pilot_tiles: 24
+split:
+  block_m: 100
+  buffer_m: 5
+  ratios: [0.5, 0.25, 0.25]
+  city_assignments: {}
+normalization:
+  mode: train_percentile
+  percentiles: [1, 99]
+  max_tiles: 24
+manipulation:
+  edits: 12
+  operations: [insertion, removal]
+  dilation_px: 2
+  blend_px: 1
+  min_area_px: 10
+  max_area_fraction: 0.3
+  inpaint_radius: 3
+  max_scale_ratio: 1.2
+training:
+  device: cpu
+  amp: false
+  epochs: 1
+  batch_size: 2
+  size: 64
+  base_channels: 4
+  model: rgb
+  lr: 0.001
+  max_steps: 2
+  threads: 2
+evaluation:
+  target_fpr: 0.1
+  image_top_fraction: 0.01
+  abstention_margin: 0.1
+  robustness: [resize, jpeg, blur]
+provenance:
+  trust_policy: credentials/trusted.json

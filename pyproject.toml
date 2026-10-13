@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "satellite-evidence"
+version = "0.1.0"
+description = "Experimental satellite tamper localization and signed processing history"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "torch==2.6.0", "torchvision==0.21.0", "rasterio==1.4.3",
+  "shapely==2.1.1", "pyproj==3.7.1", "opencv-python-headless==4.11.0.86",
+  "numpy==2.2.6", "pandas==2.2.3", "scikit-learn==1.6.1",
+  "matplotlib==3.10.3", "PyYAML==6.0.2", "cryptography==44.0.3",
+]
+
+[project.optional-dependencies]
+test = ["pytest==8.3.5"]
+diffusion = ["diffusers==0.33.1", "transformers==4.51.3", "accelerate==1.6.0"]
+
+[project.scripts]
+sat-evidence = "satellite_evidence.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
